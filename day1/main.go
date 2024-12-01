@@ -76,15 +76,15 @@ func absDiff(x, y int) int {
 	}
 }
 
-func part1() {
-	input := LoadInput("input.txt")
+func part1(filepath string) int {
+	input := LoadInput(filepath)
 	left, right := SortColumns(input)
 
 	sum := 0
 	for i := 0; i < len(input); i++ {
 		sum += absDiff(left[i], right[i])
 	}
-	fmt.Println(sum)
+	return sum
 }
 
 func countOccurrences(arr []int) map[int]int {
@@ -97,8 +97,8 @@ func countOccurrences(arr []int) map[int]int {
 	return occurrences
 }
 
-func part2() {
-	input := LoadInput("input.txt")
+func part2(filepath string) int {
+	input := LoadInput(filepath)
 	left, right := extractLeftRight(input)
 
 	occurrences := countOccurrences(right)
@@ -111,12 +111,10 @@ func part2() {
 		}
 	}
 
-	fmt.Println(totalScore)
+	return totalScore
 }
 
 func main() {
-	fmt.Println("This is PART 1:")
-	part1()
-	fmt.Println("This is PART 2:")
-	part2()
+	fmt.Println("Part one result:", part1("input.txt"))
+	fmt.Println("Part two result:", part2("input.txt"))
 }
