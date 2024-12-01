@@ -38,3 +38,21 @@ func TestSortedInput(t *testing.T) {
 		t.Errorf("expected right column %v but got %v", expectedRight, right)
 	}
 }
+
+func TestPartOne(t *testing.T) {
+	expected := 11
+	result := part1("input_test.txt")
+
+	if result != expected {
+		t.Errorf("expected %d, got %d", expected, result)
+	}
+}
+
+func TestPartTwo(t *testing.T) {
+	expected := 31
+	result := part2("input_test.txt")
+
+	if result != expected {
+		t.Errorf("expected %d, got %d", expected, result)
+	}
+}
