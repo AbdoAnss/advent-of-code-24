@@ -81,6 +81,57 @@ func countXmas(input []string, i int, j int) int {
 	return count
 }
 
+func checkXmas(input []string, i int, j int) bool {
+	limit_i := len(input)
+	limit_j := len(input[0]) // Assuming all rows have the same length
+
+	// Check bounds to ensure we don't go out of the grid
+	if i-1 >= 0 && i+1 < limit_i && j-1 >= 0 && j+1 < limit_j {
+		// Check the pattern:
+		// S . S
+		// . A .
+		// M . M
+		if input[i-1][j-1] == 'S' && input[i-1][j+1] == 'S' &&
+			input[i][j] == 'A' &&
+			input[i+1][j-1] == 'M' && input[i+1][j+1] == 'M' {
+			return true
+		}
+
+		// Check the pattern:
+		// M . S
+		// . A .
+		// M . S
+		if input[i-1][j-1] == 'M' && input[i-1][j+1] == 'S' &&
+			input[i][j] == 'A' &&
+			input[i+1][j-1] == 'M' && input[i+1][j+1] == 'S' {
+			return true
+		}
+
+		// Check the pattern:
+		// M . M
+		// . A .
+		// S . S
+		if input[i-1][j-1] == 'M' && input[i-1][j+1] == 'M' &&
+			input[i][j] == 'A' &&
+			input[i+1][j-1] == 'S' && input[i+1][j+1] == 'S' {
+			return true
+		}
+
+		// Check the pattern:
+		// S . M
+		// . A .
+		// S . M
+		if input[i-1][j-1] == 'S' && input[i-1][j+1] == 'M' &&
+			input[i][j] == 'A' &&
+			input[i+1][j-1] == 'S' && input[i+1][j+1] == 'M' {
+			return true
+		}
+
+	}
+
+	return false
+}
+
 func part1(filepath string) int {
 	input := LoadInput(filepath)
 	count := 0
@@ -95,7 +146,17 @@ func part1(filepath string) int {
 }
 
 func part2(filepath string) int {
-	return 0
+	input := LoadInput(filepath)
+	count := 0
+	for i := 0; i < len(input); i++ {
+		for j := range input[i] {
+			if checkXmas(input, i, j) {
+				count += 1
+			}
+		}
+	}
+
+	return count
 }
 
 func main() {
