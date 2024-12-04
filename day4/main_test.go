@@ -6,7 +6,18 @@ import (
 )
 
 func TestLoadInput(t *testing.T) {
-	expected := []int{7, 6, 4, 2, 1}
+	expected := []string{
+		"MMMSXXMASM",
+		"MSAMXMSMSA",
+		"AMXSXMAAMM",
+		"MSAMASMSMX",
+		"XMASAMXAMM",
+		"XXAMMXXAMA",
+		"SMSMSASXSS",
+		"SAXAMASAAA",
+		"MAMMMXMMMM",
+		"MXMXAXMASX",
+	}
 
 	result := LoadInput("input_test.txt")
 
@@ -16,7 +27,7 @@ func TestLoadInput(t *testing.T) {
 }
 
 func TestPartOne(t *testing.T) {
-	expected := 2
+	expected := 18
 	result := part1("input_test.txt")
 
 	if result != expected {
@@ -25,7 +36,7 @@ func TestPartOne(t *testing.T) {
 }
 
 func TestPartTwo(t *testing.T) {
-	expected := 4
+	expected := 9
 	result := part2("input_test.txt")
 
 	if result != expected {
