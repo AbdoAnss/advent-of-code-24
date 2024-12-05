@@ -74,13 +74,14 @@ func extractMapOfRules(rules [][]int) map[int][]int {
 }
 
 func goodUpdate(line []int, rulesMap map[int][]int) bool {
-	n := len(line)
-	for i := n - 1; i > 0; i-- {
+	for i := len(line) - 1; i > 0; i-- {
 		page := line[i]
-		values := rulesMap[page]
-		for _, v := range values {
-			if contains(line[:i], v) {
-				return false
+		// Check if any value in rulesMap[page] exists in line[:i]
+		for _, v := range rulesMap[page] {
+			for j := 0; j < i; j++ {
+				if line[j] == v {
+					return false
+				}
 			}
 		}
 	}
