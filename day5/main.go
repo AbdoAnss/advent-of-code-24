@@ -76,7 +76,6 @@ func extractMapOfRules(rules [][]int) map[int][]int {
 func goodUpdate(line []int, rulesMap map[int][]int) bool {
 	for i := len(line) - 1; i > 0; i-- {
 		page := line[i]
-		// Check if any value in rulesMap[page] exists in line[:i]
 		for _, v := range rulesMap[page] {
 			for j := 0; j < i; j++ {
 				if line[j] == v {
@@ -86,15 +85,6 @@ func goodUpdate(line []int, rulesMap map[int][]int) bool {
 		}
 	}
 	return true
-}
-
-func contains(slice []int, value int) bool {
-	for _, v := range slice {
-		if v == value {
-			return true
-		}
-	}
-	return false
 }
 
 func part1(filepath string) int {
