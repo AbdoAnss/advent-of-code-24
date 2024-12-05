@@ -60,7 +60,7 @@ func TestPartOne(t *testing.T) {
 }
 
 func TestPartTwo(t *testing.T) {
-	expected := 9
+	expected := 123
 	result := part2("input_test.txt")
 
 	if result != expected {

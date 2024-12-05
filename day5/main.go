@@ -73,18 +73,18 @@ func extractMapOfRules(rules [][]int) map[int][]int {
 	return rulesMap
 }
 
-func goodUpdate(line []int, rulesMap map[int][]int) bool {
+func goodUpdate(line []int, rulesMap map[int][]int) (int, int) {
 	for i := len(line) - 1; i > 0; i-- {
 		page := line[i]
 		for _, v := range rulesMap[page] {
 			for j := 0; j < i; j++ {
 				if line[j] == v {
-					return false
+					return i, j
 				}
 			}
 		}
 	}
-	return true
+	return -1, -1
 }
 
 func part1(filepath string) int {
@@ -93,7 +93,8 @@ func part1(filepath string) int {
 
 	result := 0
 	for _, line := range updates {
-		if goodUpdate(line, rulesMap) {
+		v, j := goodUpdate(line, rulesMap)
+		if v == -1 && j == -1 {
 			result += line[len(line)/2]
 		}
 	}
@@ -102,7 +103,36 @@ func part1(filepath string) int {
 }
 
 func part2(filepath string) int {
-	return 0
+	rules, updates := LoadInput(filepath)
+	rulesMap := extractMapOfRules(rules)
+
+	result := 0
+	correctedUpdate := [][]int{}
+
+	for _, line := range updates {
+		update := line
+		i, j := goodUpdate(update, rulesMap)
+
+		// Flag to track if any swaps occurred
+		swapped := false
+
+		for i != -1 && j != -1 {
+			update[i], update[j] = update[j], update[i]
+			swapped = true
+
+			i, j = goodUpdate(update, rulesMap)
+		}
+
+		if swapped {
+			correctedUpdate = append(correctedUpdate, update)
+		}
+	}
+
+	for _, line := range correctedUpdate {
+		result += line[len(line)/2]
+	}
+
+	return result
 }
 
 func main() {
