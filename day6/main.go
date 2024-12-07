@@ -29,10 +29,49 @@ func LoadInput(fileName string) []string {
 	return input
 }
 
-func part1(filepath string) int {
-	count := 0
+func startPosition(input []string) (int, int) {
+	for i, line := range input {
+		for j, c := range line {
+			if c == '^' {
+				return i, j
+			}
+		}
+	}
+	return -1, -1
+}
 
-	return count
+func part1(filepath string) int {
+	input := LoadInput(filepath)
+	n := len(input)
+	m := len(input[0])
+	i, j := startPosition(input)
+	currentDirection := 0
+
+	rightTurnDirections := [][]int{
+		{-1, 0},
+		{0, 1},
+		{1, 0},
+		{0, -1},
+	}
+
+	seen := make(map[[2]int]struct{})
+	for {
+		seen[[2]int{i, j}] = struct{}{} // Mark the current position as seen
+
+		nextI := i + rightTurnDirections[currentDirection][0]
+		nextJ := j + rightTurnDirections[currentDirection][1]
+
+		if !(0 <= nextI && nextI < n && 0 <= nextJ && nextJ < m) {
+			break
+		}
+
+		if input[nextI][nextJ] == '#' {
+			currentDirection = (currentDirection + 1) % 4 // Turn right
+		} else {
+			i, j = nextI, nextJ
+		}
+	}
+	return len(seen)
 }
 
 func part2(filepath string) int {

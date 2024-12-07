@@ -7,7 +7,16 @@ import (
 
 func TestLoadInput(t *testing.T) {
 	expected := []string{
-		"MMMSXXMASM",
+		"....#.....",
+		".........#",
+		"..........",
+		"..#.......",
+		".......#..",
+		"..........",
+		".#..^.....",
+		"........#.",
+		"#.........",
+		"......#...",
 	}
 
 	result := LoadInput("input_test.txt")
@@ -18,7 +27,7 @@ func TestLoadInput(t *testing.T) {
 }
 
 func TestPartOne(t *testing.T) {
-	expected := 1
+	expected := 41
 	result := part1("input_test.txt")
 
 	if result != expected {
