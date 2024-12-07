@@ -2,8 +2,8 @@
 
 ![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-2024-brightgreen)
 ![Languages](https://img.shields.io/badge/Languages-Go-00ADD8)
-![Stars](https://img.shields.io/badge/Stars%20⭐-10/50-yellow)
-![Days Completed](https://img.shields.io/badge/Days%20Completed-5/25-red)
+![Stars](https://img.shields.io/badge/Stars%20⭐-12/50-yellow)
+![Days Completed](https://img.shields.io/badge/Days%20Completed-7/25-red)
 
 My solutions for [Advent of Code 2024](https://adventofcode.com/2024) implemented in Go.
 
@@ -15,8 +15,9 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/2024) implemente
 | [Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2) | ⭐ | ⭐ | [Solution](./day2/main.go) | ⭐⭐ |
 | [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) | ⭐ | ⭐ | [Solution](./day3/main.go) | ⭐⭐ |
 | [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) | ⭐ | ⭐ | [Solution](./day4/main.go) | ⭐⭐ |
-| [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ⭐ | ⭐  | [Solution](./day5/main.go) | ⭐⭐  |
+| [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ⭐ | ⭐  | [Solution](./day5/main.go) | ⭐⭐ |
 | [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) |  |   | [Solution](./day6/main.go) |   |
+| [Day 7: Brigde Repair](https://adventofcode.com/2024/day/7) | ⭐ | ⭐ | [Solution](./day7/main.go) |  ⭐⭐  |
 
 <!-- Add more days as you complete them -->
 
@@ -28,7 +29,7 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/2024) implemente
 │   ├── main_test.go
 │   ├── input.txt
 │   └── input_test.txt
-├── day0/
+├── day2/
 │   ├── main.go
 │   ├── main_test.go
 │   ├── input.txt
