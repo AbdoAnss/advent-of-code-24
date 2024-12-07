@@ -16,7 +16,7 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/2024) implemente
 | [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) | ⭐ | ⭐ | [Solution](./day3/main.go) | ⭐⭐ |
 | [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) | ⭐ | ⭐ | [Solution](./day4/main.go) | ⭐⭐ |
 | [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ⭐ | ⭐  | [Solution](./day5/main.go) | ⭐⭐  |
-
+| [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) |  |   | [Solution](./day6/main.go) |   |
 
 <!-- Add more days as you complete them -->
 
