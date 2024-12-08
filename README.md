@@ -2,8 +2,8 @@
 
 ![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-2024-brightgreen)
 ![Languages](https://img.shields.io/badge/Languages-Go-00ADD8)
-![Stars](https://img.shields.io/badge/Stars%20⭐-12/50-yellow)
-![Days Completed](https://img.shields.io/badge/Days%20Completed-7/25-red)
+![Stars](https://img.shields.io/badge/Stars%20⭐-15/50-yellow)
+![Days Completed](https://img.shields.io/badge/Days%20Completed-8/25-red)
 
 My solutions for [Advent of Code 2024](https://adventofcode.com/2024) implemented in Go.
 

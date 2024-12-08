@@ -43,56 +43,99 @@ func frequenciesMap(input []string) map[rune][][]int {
 	return frequencyMap
 }
 
-func inBounds(indices [2]int, n int) bool {
-	i, j := indices[0], indices[1]
-	return i >= 0 && i < n && j >= 0 && j < n
+func isWithinBounds(indices [2]int, gridSize int) bool {
+	row, col := indices[0], indices[1]
+	return row >= 0 && row < gridSize && col >= 0 && col < gridSize
 }
 
 func part1(filepath string) int {
 	input := LoadInput(filepath)
-	n := len(input)
+	gridSize := len(input)
 
-	frequencyMap := frequenciesMap(input)
-	seenIndices := make(map[[2]int]struct{})
+	charPositionMap := frequenciesMap(input)
+	uniqueAntinodePositions := make(map[[2]int]struct{})
 
-	for _, indices := range frequencyMap {
-		if len(indices) <= 1 {
+	for _, positions := range charPositionMap {
+		if len(positions) <= 1 {
 			continue
 		}
 
-		for i := 0; i < len(indices); i++ {
-			firstIndex := indices[i]
-			for j := i + 1; j < len(indices); j++ {
-				secondIndex := indices[j]
+		for i := 0; i < len(positions); i++ {
+			firstPosition := positions[i]
+			firstRow, firstCol := firstPosition[0], firstPosition[1]
+			for j := i + 1; j < len(positions); j++ {
+				secondPosition := positions[j]
+				secondRow, secondCol := secondPosition[0], secondPosition[1]
 
-				firstI, firstJ := firstIndex[0], firstIndex[1]
-				nextI, nextJ := secondIndex[0], secondIndex[1]
+				rowDiff := firstRow - secondRow
+				colDiff := firstCol - secondCol
 
-				di := firstI - nextI
-				dj := firstJ - nextJ
+				firstAntinode := [2]int{firstRow + rowDiff, firstCol + colDiff}
+				secondAntinode := [2]int{secondRow - rowDiff, secondCol - colDiff}
 
-				firstAntinode := [2]int{firstI + di, firstJ + dj}
-				secondAntinode := [2]int{nextI - di, nextJ - dj}
-
-				if inBounds(firstAntinode, n) {
-					// fmt.Println("first antinode: ", firstAntinode)
-					seenIndices[[2]int{firstAntinode[0], firstAntinode[1]}] = struct{}{}
+				if isWithinBounds(firstAntinode, gridSize) {
+					uniqueAntinodePositions[firstAntinode] = struct{}{}
 				}
-				if inBounds(secondAntinode, n) {
-					// fmt.Println("second antinode: ", secondAntinode)
-					seenIndices[[2]int{secondAntinode[0], secondAntinode[1]}] = struct{}{}
+				if isWithinBounds(secondAntinode, gridSize) {
+					uniqueAntinodePositions[secondAntinode] = struct{}{}
 				}
 			}
 		}
 	}
 
-	return len(seenIndices)
+	return len(uniqueAntinodePositions)
 }
 
 func part2(filepath string) int {
-	count := 0
+	input := LoadInput(filepath)
+	gridSize := len(input)
 
-	return count
+	charPositionMap := frequenciesMap(input)
+	uniqueAntinodePositions := make(map[[2]int]struct{})
+
+	for _, positions := range charPositionMap {
+		if len(positions) <= 1 {
+			continue
+		}
+
+		for i := 0; i < len(positions); i++ {
+			firstPosition := positions[i]
+			firstRow, firstCol := firstPosition[0], firstPosition[1]
+			for j := i + 1; j < len(positions); j++ {
+				secondPosition := positions[j]
+				secondRow, secondCol := secondPosition[0], secondPosition[1]
+
+				rowDiff := firstRow - secondRow
+				colDiff := firstCol - secondCol
+
+				// Calculate antinodes for first position
+				m := 0
+				for {
+					firstAntinode := [2]int{firstRow + rowDiff*m, firstCol + colDiff*m}
+					if isWithinBounds(firstAntinode, gridSize) {
+						uniqueAntinodePositions[firstAntinode] = struct{}{}
+					} else {
+						break
+					}
+					m++
+				}
+
+				// Calculate antinodes for second position
+				m = 0
+				for {
+					secondAntinode := [2]int{secondRow - rowDiff*m, secondCol - colDiff*m}
+					if isWithinBounds(secondAntinode, gridSize) {
+						uniqueAntinodePositions[secondAntinode] = struct{}{}
+					} else {
+						break
+					}
+					m++
+				}
+			}
+		}
+	}
+
+	return len(uniqueAntinodePositions)
 }
 
 func main() {
