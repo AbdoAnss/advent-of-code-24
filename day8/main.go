@@ -108,7 +108,6 @@ func part2(filepath string) int {
 				rowDiff := firstRow - secondRow
 				colDiff := firstCol - secondCol
 
-				// Calculate antinodes for first position
 				m := 0
 				for {
 					firstAntinode := [2]int{firstRow + rowDiff*m, firstCol + colDiff*m}
@@ -120,7 +119,6 @@ func part2(filepath string) int {
 					m++
 				}
 
-				// Calculate antinodes for second position
 				m = 0
 				for {
 					secondAntinode := [2]int{secondRow - rowDiff*m, secondCol - colDiff*m}

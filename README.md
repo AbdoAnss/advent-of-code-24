@@ -35,7 +35,7 @@ My solutions for [Advent of Code 2024](https://adventofcode.com/2024) implemente
 │   ├── main_test.go
 │   ├── input.txt
 │   └── input_test.txt
-|   ...
+│   ...
 └── README.md
 ```
 
